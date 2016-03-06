@@ -10,6 +10,66 @@
   </head>
 
   <body>
-    <%= yield %>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">DMS</a>
+        </div>
+
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                  aria-haspopup="true" aria-expanded="false">Документы <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Ввод текущей даты</a></li>
+                <li><a href="#">Ввод и разноска первичного документа</a></li>
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                  aria-haspopup="true" aria-expanded="false">Регистрационный журнал <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Просмотр регистрацонного журнала</a></li>
+                <li><a href="#">Просмотр книги счетов</a></li>
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                  aria-haspopup="true" aria-expanded="false">Бухгалтерская отчетность <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Определение отчетных форм</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Книга счетов</a></li>
+                <li><a href="#">Оборотно-сальдовая ведомость</a></li>
+                <li><a href="#">Журнал-ордер</a></li>
+                <li><a href="#">Балансовая ведомость</a></li>
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                  aria-haspopup="true" aria-expanded="false">Картотеки <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Определения первичных документов</a></li>
+                <li><a href="#">Типовые хозяйственные операции</a></li>
+                <li><a href="#">План счетов</a></li>
+                <li><a href="#">Виды аналитики</a></li>
+                <li><a href="#">Коды аналитического учета</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Настройка АРМ</a></li>
+              </ul>
+            </li>
+          </ul>
+
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container -->
+    </nav>
+
+    <div class="container">
+      <%= yield %>
+    </div><!-- /.container -->
   </body>
 </html>
