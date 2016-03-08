@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%=t '.title' %></h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th><%= Dmsf::DocumentDefinition.human_attribute_name :name %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dmsf_document_definitions.each do |dmsf_document_definition| %>
+      <tr>
+        <td><%= dmsf_document_definition.id %></td>
+        <td><%= dmsf_document_definition.name %></td>
+        <td>
+          <%= link_to t('shared.edit'), edit_dmsf_document_definition_path(dmsf_document_definition),
+              class: 'btn btn-primary' %>
+          <%= link_to t('shared.destroy'), dmsf_document_definition, method: :delete, class: 'btn btn-danger',
+              data: { confirm: t('shared.confirmation') } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p><%= link_to t('.new'), new_dmsf_document_definition_path, class: 'btn btn-primary' %></p>

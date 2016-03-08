@@ -1,0 +1,2 @@
+module Dmsf::DocumentDefinitionsHelper
+end

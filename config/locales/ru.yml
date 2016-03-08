@@ -1,0 +1,41 @@
+ru:
+  activerecord:
+    models:
+      dmsf/document_definition:
+        one: определение первичного документов
+        many: определения первичного документов
+    attributes:
+      dmsf/document_definition:
+        name: Название документа
+  shared:
+    back: Назад
+    confirmation: 'Вы уверены?'
+    destroy: Удалить
+    edit: Редактировать
+
+
+  dmsf:
+    document_definitions:
+      create:
+        notice: 'Определение первичного документа создано.'
+      destroy:
+        notice: 'Определение первичного документа удалено.'
+      edit:
+        title: Редактирование определения первичного документа
+      index:
+        new: Новое определение первичного документов
+        title: Определения первичного документов
+      new:
+        title: Новое определение первичного документов
+      update:
+        notice: 'Определение первичного документа обновлено.'
+
+
+  simple_form:
+    "yes": 'Да'
+    "no": 'Нет'
+    required:
+      text: 'требуется'
+      mark: '*'
+    error_notification:
+      default_message: "Исправьте нижеследующие ошибки:"
