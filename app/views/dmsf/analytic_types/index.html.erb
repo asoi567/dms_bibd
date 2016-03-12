@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%=t '.title' %></h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th><%= Dmsf::DocumentDefinition.human_attribute_name :name %></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dmsf_analytic_types.each do |dmsf_analytic_type| %>
+      <tr>
+        <td><%= dmsf_analytic_type.id %></td>
+        <td><%= dmsf_analytic_type.name %></td>
+        <td>
+          <%= link_to t('shared.edit'), edit_dmsf_analytic_type_path(dmsf_analytic_type),
+              class: 'btn btn-primary' %>
+          <%= link_to t('shared.destroy'), dmsf_analytic_type, method: :delete, class: 'btn btn-danger',
+              data: { confirm: t('shared.confirmation') } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p><%= link_to t('.new'), new_dmsf_analytic_type_path, class: 'btn btn-primary' %></p>

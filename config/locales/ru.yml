@@ -1,10 +1,15 @@
 ru:
   activerecord:
     models:
+      dmsf/analytic_type:
+        one: вид аналитики
+        many: виды аналитики
       dmsf/document_definition:
         one: определение первичного документов
         many: определения первичного документов
     attributes:
+      dmsf/analytic_type:
+        name: Название вида аналитики
       dmsf/document_definition:
         name: Название документа
   shared:
@@ -15,6 +20,21 @@ ru:
 
 
   dmsf:
+    analytic_types:
+      create:
+        notice: 'Вид аналитики создан.'
+      destroy:
+        notice: 'Вид аналитики удален.'
+      edit:
+        title: Редактирование вида аналитики
+      index:
+        new: Новый вид аналитики
+        title: Виды аналитики
+      new:
+        title: Новый вид аналитики
+      update:
+        notice: 'Вид аналитики обновлен.'
+
     document_definitions:
       create:
         notice: 'Определение первичного документа создано.'
