@@ -1,0 +1,2 @@
+module Dmsf::AnalyticsHelper
+end

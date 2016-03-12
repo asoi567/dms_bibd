@@ -1,6 +1,9 @@
 ru:
   activerecord:
     models:
+      dmsf/analytic:
+        one: аналитический счет
+        many: аналитический счет
       dmsf/analytic_type:
         one: вид аналитики
         many: виды аналитики
@@ -8,10 +11,20 @@ ru:
         one: определение первичного документов
         many: определения первичного документов
     attributes:
+      dmsf/analytic:
+        analytic_type: Вид аналитики
+        name: Название
       dmsf/analytic_type:
         name: Название вида аналитики
       dmsf/document_definition:
         name: Название документа
+    errors:
+      models:
+        dmsf/analytic:
+          attributes:
+            analytic_type:
+              required: 'Нужно указать вид аналитики'
+
   shared:
     back: Назад
     confirmation: 'Вы уверены?'
@@ -20,6 +33,20 @@ ru:
 
 
   dmsf:
+    analytics:
+      create:
+        notice: 'Аналитический счет создан.'
+      destroy:
+        notice: 'Аналитический счет удален.'
+      edit:
+        title: Редактирование аналитический счета
+      index:
+        new: Новый аналитический счет
+        title: Коды аналитического учета
+      new:
+        title: Новый аналитический счет
+      update:
+        notice: 'Аналитический счет обновлен.'
     analytic_types:
       create:
         notice: 'Вид аналитики создан.'
