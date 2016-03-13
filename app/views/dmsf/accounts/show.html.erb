@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @dmsf_account.name %>
+</p>
+
+<p>
+  <strong>Analytic type1:</strong>
+  <%= @dmsf_account.analytic_type1 %>
+</p>
+
+<p>
+  <strong>Analytic type2:</strong>
+  <%= @dmsf_account.analytic_type2 %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @dmsf_account.code %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @dmsf_account.type %>
+</p>
+
+<%= link_to 'Edit', edit_dmsf_account_path(@dmsf_account) %> |
+<%= link_to 'Back', dmsf_accounts_path %>

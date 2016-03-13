@@ -1,0 +1,2 @@
+module Dmsf::AccountsHelper
+end

@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%=t '.title' %></h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th><%= Dmsf::Account.human_attribute_name :code %></th>
+      <th><%= Dmsf::Account.human_attribute_name :name %></th>
+      <th><%= Dmsf::Account.human_attribute_name :kind %></th>
+      <th><%= Dmsf::Account.human_attribute_name :analytic_type1 %></th>
+      <th><%= Dmsf::Account.human_attribute_name :analytic_type2 %></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dmsf_accounts.each do |dmsf_account| %>
+      <tr>
+        <td><%= dmsf_account.code %></td>
+        <td><%= dmsf_account.name %></td>
+        <td><%= t(dmsf_account.kind, scope: 'activerecord.attributes.dmsf/account.kinds') %></td>
+        <td>#<%= dmsf_account.analytic_type1.try(:id) %> <%= dmsf_account.analytic_type1.try(:name) %></td>
+        <td>#<%= dmsf_account.analytic_type2.try(:id) %> <%= dmsf_account.analytic_type2.try(:name) %></td>
+        <td>
+          <%= link_to t('shared.edit'), edit_dmsf_account_path(dmsf_account),
+              class: 'btn btn-primary' %>
+          <%= link_to t('shared.destroy'), dmsf_account, method: :delete, class: 'btn btn-danger',
+              data: { confirm: t('shared.confirmation') } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p><%= link_to t('.new'), new_dmsf_account_path, class: 'btn btn-primary' %></p>

@@ -1,0 +1,5 @@
+<h1><%=t '.title' %> <%= @dmsf_account.code %></h1>
+
+<%= render 'form', dmsf_account: @dmsf_account %>
+
+<%= link_to t('shared.back'), dmsf_accounts_path %>

@@ -1,9 +1,12 @@
 ru:
   activerecord:
     models:
+      dmsf/account:
+        one: синтетический счет
+        many: синтетические счета
       dmsf/analytic:
         one: аналитический счет
-        many: аналитический счет
+        many: аналитические счета
       dmsf/analytic_type:
         one: вид аналитики
         many: виды аналитики
@@ -11,6 +14,17 @@ ru:
         one: определение первичного документов
         many: определения первичного документов
     attributes:
+      dmsf/account:
+        analytic_type1: Вид аналитики 1
+        analytic_type2: Вид аналитики 2
+        code: Номер
+        name: Название
+        kind: Тип
+        kinds:
+          not_used: Не используется
+          only_debit: Только дебет
+          only_credit: Только кредит
+          debit_credit: Дебит и кредит
       dmsf/analytic:
         analytic_type: Вид аналитики
         name: Название
@@ -30,16 +44,31 @@ ru:
     confirmation: 'Вы уверены?'
     destroy: Удалить
     edit: Редактировать
+    select_prompt: Выберите значение
 
 
   dmsf:
+    accounts:
+      create:
+        notice: 'Синтетический счет создан.'
+      destroy:
+        notice: 'Синтетический счет удален.'
+      edit:
+        title: Редактирование синтетического счета
+      index:
+        new: Новый синтетический счет
+        title: План счетов
+      new:
+        title: Новый синтетический счет
+      update:
+        notice: 'Синтетический счет обновлен.'
     analytics:
       create:
         notice: 'Аналитический счет создан.'
       destroy:
         notice: 'Аналитический счет удален.'
       edit:
-        title: Редактирование аналитический счета
+        title: Редактирование аналитического счета
       index:
         new: Новый аналитический счет
         title: Коды аналитического учета

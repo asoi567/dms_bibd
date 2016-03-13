@@ -1,0 +1,16 @@
+<%= simple_form_for(@dmsf_account) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :code %>
+    <%= f.input :name %>
+    <%= f.input :kind, collection: Dmsf::Account.kinds.keys, prompt: t('shared.select_prompt'),
+        label_method: ->(k) { t(k, scope: 'activerecord.attributes.dmsf/account.kinds') } %>
+    <%= f.association :analytic_type1 %>
+    <%= f.association :analytic_type2 %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

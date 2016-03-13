@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160312173926) do
+ActiveRecord::Schema.define(version: 20160313074415) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "dmsf_accounts", force: :cascade do |t|
+    t.string   "name"
+    t.string   "code"
+    t.integer  "kind",              default: 0
+    t.integer  "analytic_type1_id"
+    t.integer  "analytic_type2_id"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "dmsf_accounts", ["analytic_type1_id"], name: "index_dmsf_accounts_on_analytic_type1_id", using: :btree
+  add_index "dmsf_accounts", ["analytic_type2_id"], name: "index_dmsf_accounts_on_analytic_type2_id", using: :btree
 
   create_table "dmsf_analytic_types", force: :cascade do |t|
     t.string   "name"
@@ -37,5 +50,7 @@ ActiveRecord::Schema.define(version: 20160312173926) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "dmsf_accounts", "dmsf_analytic_types", column: "analytic_type1_id"
+  add_foreign_key "dmsf_accounts", "dmsf_analytic_types", column: "analytic_type2_id"
   add_foreign_key "dmsf_analytics", "dmsf_analytic_types", column: "analytic_type_id"
 end
