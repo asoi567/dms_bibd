@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  namespace :dmsf do
-    resources :standard_operations
-  end
   root to: 'home#index'
 
   namespace :dmsf do
@@ -9,6 +6,8 @@ Rails.application.routes.draw do
     resources :analytics
     resources :analytic_types
     resources :document_definitions
+    resource :setting
+    resources :standard_operations
   end
 
 

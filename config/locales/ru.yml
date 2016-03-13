@@ -13,6 +13,7 @@ ru:
       dmsf/document_definition:
         one: определение первичного документов
         many: определения первичного документов
+      dmsf/setting: настройки
       dmsf/standard_operation:
         one: типовую операцию
         many: типовые операции
@@ -35,6 +36,12 @@ ru:
         name: Название
       dmsf/document_definition:
         name: Название
+      dmsf/setting:
+        current_date: Текущая дата
+        start_date: Дата начала периода
+        end_date: Дата конца периода
+        organization_name: Наименование организации
+        current_account: Текущий счет
       dmsf/standard_operation:
         credits_account: Cчет кредита
         debits_account: Счет дебета
@@ -112,6 +119,12 @@ ru:
         title: Новое определение первичного документов
       update:
         notice: 'Определение первичного документа обновлено.'
+    settings:
+      edit:
+        title: Редактирование настроек
+      update:
+        notice: 'Настройки обновлены.'
+
     standard_operations:
       create:
         notice: 'Типовая операция создана.'

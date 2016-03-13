@@ -18,20 +18,12 @@
 
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                  aria-haspopup="true" aria-expanded="false">Документы <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Ввод текущей даты</a></li>
-                <li><a href="#">Ввод и разноска первичного документа</a></li>
-              </ul>
-            </li>
-
+            <li><a href="#">Документы</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                   aria-haspopup="true" aria-expanded="false">Регистрационный журнал <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Просмотр регистрацонного журнала</a></li>
+                <li><a href="#">Просмотр регистрационного журнала</a></li>
                 <li><a href="#">Просмотр книги счетов</a></li>
               </ul>
             </li>
@@ -58,10 +50,9 @@
                 <li><%= link_to "План счетов", dmsf_accounts_path %></li>
                 <li><%= link_to "Виды аналитики", dmsf_analytic_types_path %></li>
                 <li><%= link_to "Коды аналитического учета", dmsf_analytics_path %></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">Настройка АРМ</a></li>
               </ul>
             </li>
+            <li><%= link_to "Настройки", edit_dmsf_setting_path %></li>
           </ul>
 
         </div><!-- /.navbar-collapse -->

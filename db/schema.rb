@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160313090313) do
+ActiveRecord::Schema.define(version: 20160313154959) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,18 @@ ActiveRecord::Schema.define(version: 20160313090313) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "dmsf_settings", force: :cascade do |t|
+    t.date     "current_date"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "current_account_id"
+    t.string   "organization_name"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "dmsf_settings", ["current_account_id"], name: "index_dmsf_settings_on_current_account_id", using: :btree
+
   create_table "dmsf_standard_operations", force: :cascade do |t|
     t.string   "name"
     t.integer  "debits_account_id"
@@ -66,6 +78,7 @@ ActiveRecord::Schema.define(version: 20160313090313) do
   add_foreign_key "dmsf_accounts", "dmsf_analytic_types", column: "analytic_type1_id"
   add_foreign_key "dmsf_accounts", "dmsf_analytic_types", column: "analytic_type2_id"
   add_foreign_key "dmsf_analytics", "dmsf_analytic_types", column: "analytic_type_id"
+  add_foreign_key "dmsf_settings", "dmsf_accounts", column: "current_account_id"
   add_foreign_key "dmsf_standard_operations", "dmsf_accounts", column: "credits_account_id"
   add_foreign_key "dmsf_standard_operations", "dmsf_accounts", column: "debits_account_id"
   add_foreign_key "dmsf_standard_operations", "dmsf_document_definitions", column: "document_definition_id"

@@ -1,0 +1,19 @@
+<p class="alert alert-success" role="alert"><%= notice %></p>
+
+<h1><%=t '.title' %></h1>
+
+<%= simple_form_for(settings, url: dmsf_setting_path) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :current_date %>
+    <%= f.input :start_date %>
+    <%= f.input :end_date %>
+    <%= f.input :organization_name %>
+    <%= f.association :current_account, label_method: :full_name %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
