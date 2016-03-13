@@ -13,6 +13,9 @@ ru:
       dmsf/document_definition:
         one: определение первичного документов
         many: определения первичного документов
+      dmsf/standard_operation:
+        one: типовую операцию
+        many: типовые операции
     attributes:
       dmsf/account:
         analytic_type1: Вид аналитики 1
@@ -29,9 +32,14 @@ ru:
         analytic_type: Вид аналитики
         name: Название
       dmsf/analytic_type:
-        name: Название вида аналитики
+        name: Название
       dmsf/document_definition:
-        name: Название документа
+        name: Название
+      dmsf/standard_operation:
+        credits_account: Cчет кредита
+        debits_account: Счет дебета
+        document_definition: Первичный документ
+        name: Название
     errors:
       models:
         dmsf/analytic:
@@ -90,7 +98,6 @@ ru:
         title: Новый вид аналитики
       update:
         notice: 'Вид аналитики обновлен.'
-
     document_definitions:
       create:
         notice: 'Определение первичного документа создано.'
@@ -105,6 +112,20 @@ ru:
         title: Новое определение первичного документов
       update:
         notice: 'Определение первичного документа обновлено.'
+    standard_operations:
+      create:
+        notice: 'Типовая операция создана.'
+      destroy:
+        notice: 'Типовая операция удалена.'
+      edit:
+        title: Редактирование типовой операции
+      index:
+        new: Новая типовая операция
+        title: Типовые хозяйственные операции
+      new:
+        title: Новая типовая операция
+      update:
+        notice: 'Типовая операция обновлена.'
 
 
   simple_form:

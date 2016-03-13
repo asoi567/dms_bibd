@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :dmsf do
+    resources :standard_operations
+  end
   root to: 'home#index'
 
   namespace :dmsf do

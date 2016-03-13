@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @dmsf_standard_operation.name %>
+</p>
+
+<p>
+  <strong>Debits account:</strong>
+  <%= @dmsf_standard_operation.debits_account %>
+</p>
+
+<p>
+  <strong>Credits account:</strong>
+  <%= @dmsf_standard_operation.credits_account %>
+</p>
+
+<p>
+  <strong>Document definition:</strong>
+  <%= @dmsf_standard_operation.document_definition %>
+</p>
+
+<%= link_to 'Edit', edit_dmsf_standard_operation_path(@dmsf_standard_operation) %> |
+<%= link_to 'Back', dmsf_standard_operations_path %>

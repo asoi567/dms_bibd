@@ -1,0 +1,5 @@
+<h1><%=t '.title' %> <%= @dmsf_standard_operation.id %></h1>
+
+<%= render 'form', dmsf_standard_operation: @dmsf_standard_operation %>
+
+<%= link_to t('shared.back'), dmsf_standard_operations_path %>
