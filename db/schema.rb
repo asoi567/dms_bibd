@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160313154959) do
+ActiveRecord::Schema.define(version: 20160316180931) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,11 +44,43 @@ ActiveRecord::Schema.define(version: 20160313154959) do
 
   add_index "dmsf_analytics", ["analytic_type_id"], name: "index_dmsf_analytics_on_analytic_type_id", using: :btree
 
+  create_table "dmsf_analytics_documents", id: false, force: :cascade do |t|
+    t.integer "dmsf_document_id", null: false
+    t.integer "dmsf_analytic_id", null: false
+  end
+
   create_table "dmsf_document_definitions", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "dmsf_documents", force: :cascade do |t|
+    t.string   "name"
+    t.string   "number"
+    t.date     "date"
+    t.integer  "document_definition_id"
+    t.integer  "standard_operation_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "dmsf_documents", ["document_definition_id"], name: "index_dmsf_documents_on_document_definition_id", using: :btree
+  add_index "dmsf_documents", ["standard_operation_id"], name: "index_dmsf_documents_on_standard_operation_id", using: :btree
+
+  create_table "dmsf_entries", force: :cascade do |t|
+    t.integer  "document_id",                    null: false
+    t.integer  "debits_account_id",              null: false
+    t.integer  "credits_account_id",             null: false
+    t.integer  "amount",             default: 0, null: false
+    t.date     "date",                           null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  add_index "dmsf_entries", ["credits_account_id"], name: "index_dmsf_entries_on_credits_account_id", using: :btree
+  add_index "dmsf_entries", ["debits_account_id"], name: "index_dmsf_entries_on_debits_account_id", using: :btree
+  add_index "dmsf_entries", ["document_id"], name: "index_dmsf_entries_on_document_id", using: :btree
 
   create_table "dmsf_settings", force: :cascade do |t|
     t.date     "current_date"
@@ -78,6 +110,11 @@ ActiveRecord::Schema.define(version: 20160313154959) do
   add_foreign_key "dmsf_accounts", "dmsf_analytic_types", column: "analytic_type1_id"
   add_foreign_key "dmsf_accounts", "dmsf_analytic_types", column: "analytic_type2_id"
   add_foreign_key "dmsf_analytics", "dmsf_analytic_types", column: "analytic_type_id"
+  add_foreign_key "dmsf_documents", "dmsf_document_definitions", column: "document_definition_id"
+  add_foreign_key "dmsf_documents", "dmsf_standard_operations", column: "standard_operation_id"
+  add_foreign_key "dmsf_entries", "dmsf_accounts", column: "credits_account_id"
+  add_foreign_key "dmsf_entries", "dmsf_accounts", column: "debits_account_id"
+  add_foreign_key "dmsf_entries", "dmsf_documents", column: "document_id"
   add_foreign_key "dmsf_settings", "dmsf_accounts", column: "current_account_id"
   add_foreign_key "dmsf_standard_operations", "dmsf_accounts", column: "credits_account_id"
   add_foreign_key "dmsf_standard_operations", "dmsf_accounts", column: "debits_account_id"
