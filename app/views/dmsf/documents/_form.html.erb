@@ -3,7 +3,7 @@
 
   <%= f.association :standard_operation %>
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-5">
       <%= f.input :name, input_html: {class: 'dmsf_document_name'}, as: :hidden %>
       <%= f.input :name, input_html: {class: 'dmsf_document_name'}, disabled: true %>
       <%= f.input :document_definition_id, as: :hidden %>
@@ -11,16 +11,16 @@
     <div class="col-sm-offset-1 col-sm-1">
       <%= f.input :number %>
     </div>
-    <div class="col-sm-offset-1 col-sm-3">
+    <div class="col-sm-offset-1 col-sm-4">
       <%= f.input :date %>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-5">
       <fieldset>
         <legend>Проводка</legend>
-        <%= f.fields_for :entry do |ef| %>
+        <%= f.fields_for :entry, include_id: false do |ef| %>
           <%= ef.input :debits_account_id, as: :hidden %>
           <%= ef.input :credits_account_id, as: :hidden %>
           <%= ef.input :debit, disabled: true %>
@@ -30,9 +30,14 @@
         <% end %>
       <fieldset>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-offset-1 col-sm-6">
       <fieldset>
         <legend>Аналитика</legend>
+        <div class="analytics_placeholder">
+          <% @dmsf_document.analytic_types.each do |analytic_type| %>
+            <%= f.association :analytics, input_html: {multiple: false, name: 'dmsf_document[analytic_ids][]'}, collection: analytic_type.analytics, label: analytic_type.name %>
+          <% end %>
+        </div>
       <fieldset>
     </div>
   </div>
