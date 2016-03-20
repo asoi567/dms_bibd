@@ -10,6 +10,7 @@ ru:
       dmsf/analytic_type:
         one: вид аналитики
         many: виды аналитики
+      dmsf/document: первичный документ
       dmsf/document_definition:
         one: определение первичного документов
         many: определения первичного документов
@@ -34,8 +35,19 @@ ru:
         name: Название
       dmsf/analytic_type:
         name: Название
+      dmsf/document:
+        date: Дата
+        entry: Проводка
+        name: Название
+        number: Номер
+        standard_operation: Типовая операция
       dmsf/document_definition:
         name: Название
+      dmsf/entry:
+        amount: Сумма
+        credit: Кредит
+        date: Дата
+        debit: Дебет
       dmsf/setting:
         current_date: Текущая дата
         start_date: Дата начала периода
@@ -48,11 +60,8 @@ ru:
         document_definition: Первичный документ
         name: Название
     errors:
-      models:
-        dmsf/analytic:
-          attributes:
-            analytic_type:
-              required: 'Нужно указать вид аналитики'
+      messages:
+        required: 'Нужно указать связь'
 
   shared:
     back: Назад
@@ -119,6 +128,20 @@ ru:
         title: Новое определение первичного документов
       update:
         notice: 'Определение первичного документа обновлено.'
+    documents:
+      create:
+        notice: 'Первичный документ создан.'
+      destroy:
+        notice: 'Первичный документ удален.'
+      edit:
+        title: Редактирование первичного документа
+      index:
+        new: Новый первичный документ
+        title: Первичные документы
+      new:
+        title: Новый первичный документ
+      update:
+        notice: 'Первичный документ обновлен.'
     settings:
       edit:
         title: Редактирование настроек

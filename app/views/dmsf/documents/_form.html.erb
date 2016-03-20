@@ -1,0 +1,43 @@
+<%= simple_form_for(@dmsf_document, html: {class: 'form-horizontal'}) do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.association :standard_operation %>
+  <div class="row">
+    <div class="col-sm-6">
+      <%= f.input :name, input_html: {class: 'dmsf_document_name'}, as: :hidden %>
+      <%= f.input :name, input_html: {class: 'dmsf_document_name'}, disabled: true %>
+      <%= f.input :document_definition_id, as: :hidden %>
+    </div>
+    <div class="col-sm-offset-1 col-sm-1">
+      <%= f.input :number %>
+    </div>
+    <div class="col-sm-offset-1 col-sm-3">
+      <%= f.input :date %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <fieldset>
+        <legend>Проводка</legend>
+        <%= f.fields_for :entry do |ef| %>
+          <%= ef.input :debits_account_id, as: :hidden %>
+          <%= ef.input :credits_account_id, as: :hidden %>
+          <%= ef.input :debit, disabled: true %>
+          <%= ef.input :credit, disabled: true %>
+          <%= ef.input :amount %>
+          <%= ef.input :date %>
+        <% end %>
+      <fieldset>
+    </div>
+    <div class="col-sm-6">
+      <fieldset>
+        <legend>Аналитика</legend>
+      <fieldset>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

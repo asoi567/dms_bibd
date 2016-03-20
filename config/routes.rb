@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :analytics
     resources :analytic_types
     resources :document_definitions
+    resources :documents
     resource :setting
     resources :standard_operations
   end

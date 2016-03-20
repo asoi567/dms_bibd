@@ -1,0 +1,5 @@
+<h1><%=t '.title' %> "<%= @dmsf_document.name %>" #<%= @dmsf_document.number %></h1>
+
+<%= render 'form', dmsf_document: @dmsf_document %>
+
+<%= link_to t('shared.back'), dmsf_documents_path %>
