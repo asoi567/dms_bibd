@@ -52,6 +52,8 @@ q_start = current_qarter.first.to_date
 q_end = current_qarter.last.to_date
 uk_date = (q_start - 1.month).to_date
 
+Dmsf::Setting.create current_date: today, start_date: q_start, end_date: q_end, current_account: a60, organization_name: 'ООО "DMSF"'
+
 Dmsf::Document.create document_definition: dd_spr, name: dd_spr.name, number: '1', date: uk_date,
     standard_operation: so_nuk, analytics: [],
     entry_attributes: {debits_account: a75, credits_account: a80, amount: 100_000, date: uk_date }

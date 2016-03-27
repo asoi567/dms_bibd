@@ -6,7 +6,7 @@ class Dmsf::Setting < ApplicationRecord
       current_date: Date.today,
       start_date: Date.today.beginning_of_quarter,
       end_date: Date.today.end_of_quarter,
-      current_account: Account.first
+      current_account: Dmsf::Account.first
     )
   end
 end
