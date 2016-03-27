@@ -48,6 +48,8 @@ ru:
         credit: Кредит
         date: Дата
         debit: Дебет
+        document: Документ
+        standard_operation: Операция
       dmsf/setting:
         current_date: Текущая дата
         start_date: Дата начала периода
@@ -137,11 +139,14 @@ ru:
         title: Редактирование первичного документа
       index:
         new: Новый первичный документ
-        title: Первичные документы
+        title: Регистрационный журнал
       new:
         title: Новый первичный документ
       update:
         notice: 'Первичный документ обновлен.'
+    entries:
+      index:
+        title: Книга счетов
     settings:
       edit:
         title: Редактирование настроек

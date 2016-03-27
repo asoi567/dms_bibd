@@ -8,4 +8,8 @@ class Dmsf::Document < ApplicationRecord
   def analytic_types
     standard_operation.try(:analytic_types) || []
   end
+
+  def full_name
+    "#{name} №#{number} от #{date}"
+  end
 end

@@ -1,0 +1,27 @@
+<h1><%=t '.title' %></h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th><%= Dmsf::Entry.human_attribute_name :date %></th>
+      <th><%= Dmsf::Entry.human_attribute_name :document %></th>
+      <th><%= Dmsf::Entry.human_attribute_name :standard_operation %></th>
+      <th><%= Dmsf::Entry.human_attribute_name :debit %></th>
+      <th><%= Dmsf::Entry.human_attribute_name :credit %></th>
+      <th><%= Dmsf::Entry.human_attribute_name :amount %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dmsf_entries.each do |dmsf_entry| %>
+      <tr>
+        <td><%= dmsf_entry.date %></td>
+        <td><%= dmsf_entry.document.full_name %></td>
+        <td><%= dmsf_entry.standard_operation.try(:name) %></td>
+        <td><%= dmsf_entry.debit %></td>
+        <td><%= dmsf_entry.credit %></td>
+        <td nowrap class="text-right"><%= number_with_delimiter dmsf_entry.amount, delimeter: ' ' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

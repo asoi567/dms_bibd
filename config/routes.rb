@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :analytic_types
     resources :document_definitions
     resources :documents
+    resources :entries, only: %i(index)
     resource :setting
     resources :standard_operations
   end

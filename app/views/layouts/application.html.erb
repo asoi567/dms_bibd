@@ -18,13 +18,13 @@
 
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><%= link_to "Документы", dmsf_documents_path %></li>
+            <li><%= link_to "Новый документ", new_dmsf_document_path %></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                   aria-haspopup="true" aria-expanded="false">Регистрационный журнал <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Просмотр регистрационного журнала</a></li>
-                <li><a href="#">Просмотр книги счетов</a></li>
+                <li><%= link_to "Просмотр регистрационного журнала", dmsf_documents_path %></li>
+                <li><%= link_to "Просмотр книги счетов", dmsf_entries_path %></li>
               </ul>
             </li>
 
