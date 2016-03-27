@@ -18,7 +18,7 @@
 
 
 $(document).on('ready page:load', function(){
-  $('#dmsf_document_standard_operation_id').on('change', function(){
+  $(document).on('change', '#dmsf_document_standard_operation_id', function(){
     var analyticsTemplate = function(analytic_types) {
       return analytic_types.map(function(analytic_type){
         var analytic_options = analytic_type.analytics.map(function(analytic){

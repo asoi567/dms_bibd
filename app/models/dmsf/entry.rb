@@ -12,6 +12,6 @@ class Dmsf::Entry < ApplicationRecord
   end
 
   def description
-    "Дт #{debits_account.code} - Кт #{credits_account.code} : #{amount} BYR"
+    "Дт #{debits_account.code} - Кт #{credits_account.code} : #{amount} BYN"
   end
 end
