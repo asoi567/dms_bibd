@@ -10,6 +10,10 @@ Rails.application.routes.draw do
     resources :entries, only: %i(index)
     resource :setting
     resources :standard_operations
+
+    resources :reports, only: [] do
+      get :card, :turnover, :analysis, :balance, on: :collection
+    end
   end
 
 

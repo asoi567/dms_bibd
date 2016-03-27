@@ -32,12 +32,10 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                   aria-haspopup="true" aria-expanded="false">Бухгалтерская отчетность <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Определение отчетных форм</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">Книга счетов</a></li>
-                <li><a href="#">Оборотно-сальдовая ведомость</a></li>
-                <li><a href="#">Журнал-ордер</a></li>
-                <li><a href="#">Балансовая ведомость</a></li>
+                <li><%= link_to "Анализ счета", analysis_dmsf_reports_path %></li>
+                <li><%= link_to "Оборотно-сальдовая ведомость", turnover_dmsf_reports_path %></li><!--  ОСВ по счету -->
+                <li><%= link_to "Карточка счета", card_dmsf_reports_path %></li>
+                <li><%= link_to "Балансовая ведомость", balance_dmsf_reports_path %></li><!--  ОСВ -->
               </ul>
             </li>
 

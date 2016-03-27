@@ -147,6 +147,15 @@ ru:
     entries:
       index:
         title: Книга счетов
+    reports:
+      analysis:
+        title: 'Анализ счета %{account}'
+      balance:
+        title: 'Балансовая ведомость'
+      card:
+        title: 'Карточка счета %{account}'
+      turnover:
+        title: 'Оборотно-сальдовая ведомость по счету %{account}'
     settings:
       edit:
         title: Редактирование настроек
