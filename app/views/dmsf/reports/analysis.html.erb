@@ -1,1 +1,58 @@
-<h1><%=t '.title' %></h1>
+<h1><%=t '.title', account: account.code %> <br><small><%= account.name %></small></h1>
+<h4>За период <%= settings.start_date %> - <%= settings.end_date %></h4>
+
+<table class="table">
+  <tr>
+    <th>Счет</th>
+    <th>Кор. счет</th>
+    <th class="text-right">Дебет</th>
+    <th class="text-right">Кредит</th>
+  </tr>
+
+  <tr>
+    <th><%= account.code %></th>
+    <th>Начальное сальдо</th>
+    <th nowrap class="text-right">
+      <%= (@net_dt_s > @net_kt_s) ? number_with_delimiter(@net_dt_s - @net_kt_s, delimeter: ' ') : '' %>
+    </th>
+    <th nowrap class="text-right">
+      <%= (@net_kt_s > @net_dt_s) ? number_with_delimiter(@net_kt_s - @net_dt_s, delimeter: ' ') : '' %>
+    </th>
+  </tr>
+
+  <% @korrs.each do |korr| %>
+  <tr>
+    <td></td>
+    <td><%= korr.code %></td>
+    <td nowrap class="text-right">
+      <%= @dt[korr] ? number_with_delimiter(@dt[korr].first.amount, delimeter: ' ') : '' %>
+    </td>
+    <td nowrap class="text-right">
+      <%= @kt[korr] ? number_with_delimiter(@kt[korr].first.amount, delimeter: ' ') : '' %>
+    </td>
+  </tr>
+  <% end %>
+
+  <tr>
+    <th></th>
+    <th>Оборот</th>
+    <th nowrap class="text-right">
+      <%= @dt.present? ? number_with_delimiter(@dt.values.map(&:first).sum(&:amount), delimeter: ' ') : '' %>
+    </th>
+    <th nowrap class="text-right">
+      <%= @kt.present? ? number_with_delimiter(@kt.values.map(&:first).sum(&:amount), delimeter: ' ') : '' %>
+    </th>
+  </tr>
+
+  <tr>
+    <th></th>
+    <th>Конечное сальдо</th>
+    <th nowrap class="text-right">
+      <%= (@net_dt_e > @net_kt_e) ? number_with_delimiter(@net_dt_e - @net_kt_e, delimeter: ' ') : '' %>
+    </th>
+    <th nowrap class="text-right">
+      <%= (@net_kt_e > @net_dt_e) ? number_with_delimiter(@net_kt_e - @net_dt_e, delimeter: ' ') : '' %>
+    </th>
+  </tr>
+
+</table>
