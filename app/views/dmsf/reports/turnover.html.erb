@@ -1,1 +1,98 @@
 <h1><%=t '.title', account: account.code %> <br><small><%= account.name %></small></h1>
+<h4>За период <%= settings.start_date %> - <%= settings.end_date %></h4>
+
+<table class="table">
+  <tr>
+    <th>Аналитика</th>
+    <th class="text-right">Сальдо начальное дебет</th>
+    <th class="text-right">Сальдо начальное кредит</th>
+    <th class="text-right">Оборот дебет</th>
+    <th class="text-right">Оборот кредит</th>
+    <th class="text-right">Сальдо конечное дебет</th>
+    <th class="text-right">Сальдо конечное кредит</th>
+  </tr>
+
+  <% @analytics_tree.each do |a1, a2s| %>
+    <% if a1 %>
+      <tr>
+        <th><%= a1.name %></th>
+        <% balance = (@net_dt_s[a1].values.sum rescue 0) - (@net_kt_s[a1].values.sum rescue 0) %>
+        <th class="text-right">
+          <%= balance > 0 ? number_with_delimiter(balance, delimeter: ' ') : '' %>
+        </th>
+        <th class="text-right">
+          <%= balance < 0 ? number_with_delimiter(-balance, delimeter: ' ') : '' %>
+        </th>
+        <% balance = (@dt[a1].values.sum rescue 0) - (@kt[a1].values.sum rescue 0) %>
+        <th class="text-right">
+          <%= balance > 0 ? number_with_delimiter(balance, delimeter: ' ') : '' %>
+        </th>
+        <th class="text-right">
+          <%= balance < 0 ? number_with_delimiter(-balance, delimeter: ' ') : '' %>
+        </th>
+        <% balance = (@net_dt_e[a1].values.sum rescue 0) - (@net_kt_e[a1].values.sum rescue 0) %>
+        <th class="text-right">
+          <%= balance > 0 ? number_with_delimiter(balance, delimeter: ' ') : '' %>
+        </th>
+        <th class="text-right">
+          <%= balance < 0 ? number_with_delimiter(-balance, delimeter: ' ') : '' %>
+        </th>
+      </tr>
+    <% end %>
+
+    <% a2s.each do |a2| %>
+      <% if a2 %>
+        <tr>
+          <td><%= a2.name %></td>
+          <% balance = (@net_dt_s[a1][a2] rescue 0) || 0 - (@net_kt_s[a1][a2] rescue 0) || 0 %>
+          <td class="text-right">
+            <%= balance > 0 ? number_with_delimiter(balance, delimeter: ' ') : '' %>
+          </td>
+          <td class="text-right">
+            <%= balance < 0 ? number_with_delimiter(-balance, delimeter: ' ') : '' %>
+          </td>
+          <% balance = (@dt[a1][a2] rescue 0) || 0 - (@kt[a1][a2] rescue 0) || 0 %>
+          <td class="text-right">
+            <%= balance > 0 ? number_with_delimiter(balance, delimeter: ' ') : '' %>
+          </td>
+          <td class="text-right">
+            <%= balance < 0 ? number_with_delimiter(-balance, delimeter: ' ') : '' %>
+          </td>
+          <% balance = (@net_dt_e[a1][a2] rescue 0) || 0 - (@net_kt_e[a1][a2] rescue 0) || 0 %>
+          <th class="text-right">
+            <%= balance > 0 ? number_with_delimiter(balance, delimeter: ' ') : '' %>
+          </td>
+          <th class="text-right">
+            <%= balance < 0 ? number_with_delimiter(-balance, delimeter: ' ') : '' %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <tr>
+    <th>Итого</th>
+    <% balance = @net_dt_s.values.flat_map(&:values).sum - @net_kt_s.values.flat_map(&:values).sum %>
+    <th class="text-right">
+      <%= balance > 0 ? number_with_delimiter(balance, delimeter: ' ') : '' %>
+    </th>
+    <th class="text-right">
+      <%= balance < 0 ? number_with_delimiter(-balance, delimeter: ' ') : '' %>
+    </th>
+    <% balance = @dt.values.flat_map(&:values).sum - @kt.values.flat_map(&:values).sum %>
+    <th class="text-right">
+      <%= balance > 0 ? number_with_delimiter(balance, delimeter: ' ') : '' %>
+    </th>
+    <th class="text-right">
+      <%= balance < 0 ? number_with_delimiter(-balance, delimeter: ' ') : '' %>
+    </th>
+    <% balance = @net_dt_e.values.flat_map(&:values).sum - @net_kt_e.values.flat_map(&:values).sum %>
+    <th class="text-right">
+      <%= balance > 0 ? number_with_delimiter(balance, delimeter: ' ') : '' %>
+    </th>
+    <th class="text-right">
+      <%= balance < 0 ? number_with_delimiter(-balance, delimeter: ' ') : '' %>
+    </th>
+  </tr>
+
+</table>

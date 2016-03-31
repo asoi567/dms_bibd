@@ -25,7 +25,7 @@ at_con_as << at_con.analytics.create(name: 'ООО "HDstroy All In One"')
 at_con_as << at_con.analytics.create(name: 'АО "ОЗИЛЮКС"')
 
 a10 = Dmsf::Account.create code: '10-1', name: 'Сырье и материалы', kind: 'only_debit',
-    analytic_type1: at_nom, analytic_type2: at_mat
+    analytic_type1: at_mat, analytic_type2: at_nom
 a51 = Dmsf::Account.create code: '51', name: 'Расчетные счета', kind: 'only_debit', analytic_type1: at_acc
 a60 = Dmsf::Account.create code: '60', name: 'Расчеты с поставщиками и подрядчиками',
     kind: 'only_credit', analytic_type1: at_con
@@ -56,11 +56,11 @@ Dmsf::Setting.create current_date: today, start_date: q_start, end_date: q_end, 
 
 Dmsf::Document.create document_definition: dd_spr, name: dd_spr.name, number: '1', date: uk_date,
     standard_operation: so_nuk, analytics: [],
-    entry_attributes: {debits_account: a75, credits_account: a80, amount: 100_000, date: uk_date }
+    entry_attributes: {debits_account: a75, credits_account: a80, amount: 1000000, date: uk_date }
 
 Dmsf::Document.create document_definition: dd_vyp, name: dd_vyp.name, number: '1', date: uk_date,
     standard_operation: so_ouk, analytics: [at_acc_1],
-    entry_attributes: {debits_account: a51, credits_account: a75, amount: 100_000, date: uk_date }
+    entry_attributes: {debits_account: a51, credits_account: a75, amount: 1000000, date: uk_date }
 
 50.times do |n|
   date = (uk_date..today).to_a.sample
@@ -72,6 +72,6 @@ end
 5.times do |n|
   date = (uk_date..today).to_a.sample
   Dmsf::Document.create document_definition: dd_vyp, name: dd_vyp.name, number: (n + 2).to_s, date: date,
-      standard_operation: so_omz, analytics: [at_con_as.sample],
+      standard_operation: so_omz, analytics: [at_con_as.sample, at_acc_1],
       entry_attributes: {debits_account: a60, credits_account: a51, amount: (rand(100) + 1) * 1000 , date: date }
 end
