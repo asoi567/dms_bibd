@@ -1,2 +1,73 @@
 <h1><%=t '.title', account: account.code %> <br><small><%= account.name %></small></h1>
-<h4>За период <%= settings.start_date %> - <%= settings.end_date %></h4>
+<h4>За период <%= settings.start_date %> — <%= settings.end_date %></h4>
+
+
+<table class="table">
+  <tr>
+    <th>Дата</th>
+    <th>Документ</th>
+    <th>Аналитика Дт</th>
+    <th>Аналитика Кт</th>
+    <th>Дебет, счет</th>
+    <th class="text-right">Дебет, сумма</th>
+    <th>Кредит, счет</th>
+    <th class="text-right">Кредит, сумма</th>
+    <th class="text-right">Текущее сальдо</th>
+  </tr>
+
+  <tr>
+    <th colspan="8">Сальдо на начало</th>
+    <th nowrap class="text-right">
+      <%= @saldo > 0 ? 'Дт' : 'Кт' %>
+      <%= @saldo == 0 ? '' : number_with_delimiter(@saldo.abs, delimeter: ' ') %>
+    </th>
+  </tr>
+
+  <% @entries.each do |entry| %>
+    <tr>
+      <td nowrap><%= entry.date %></td>
+      <td><%= entry.document.full_name %></td>
+      <td>
+        <% entry.document.analytics.each do |a| %>
+          <% if a.analytic_type_id.in? entry.debits_account.analytic_type_ids %>
+            <p><%= a.name %></p>
+          <% end %>
+        <% end %>
+      </td>
+      <td>
+        <% entry.document.analytics.each do |a| %>
+          <% if a.analytic_type_id.in? entry.credits_account.analytic_type_ids %>
+            <p><%= a.name %></p>
+          <% end %>
+        <% end %>
+      </td>
+      <td><%= entry.debits_account.code %></td>
+      <td nowrap class="text-right">
+        <% if entry.debits_account == account %>
+          <%= number_with_delimiter(entry.amount, delimeter: ' ') %>
+          <% @saldo += entry.amount %>
+        <% end %>
+      </td>
+      <td><%= entry.credits_account.code %></td>
+      <td nowrap class="text-right">
+        <% if entry.credits_account == account %>
+          <%= number_with_delimiter(entry.amount, delimeter: ' ') %>
+          <% @saldo -= entry.amount %>
+        <% end %>
+      </td>
+      <td nowrap class="text-right">
+        <%= @saldo > 0 ? 'Дт' : 'Кт' %>
+        <%= @saldo == 0 ? '' : number_with_delimiter(@saldo.abs, delimeter: ' ') %>
+      </td>
+    </tr>
+  <% end %>
+
+  <tr>
+    <th colspan="8">Сальдо на конец</th>
+    <th nowrap class="text-right">
+      <% @saldo = @net_dt_e - @net_kt_e %>
+      <%= @saldo > 0 ? 'Дт' : 'Кт' %>
+      <%= @saldo == 0 ? '' : number_with_delimiter(@saldo.abs, delimeter: ' ') %>
+    </th>
+  </tr>
+</table>

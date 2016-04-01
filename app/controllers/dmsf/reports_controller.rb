@@ -27,6 +27,13 @@ class Dmsf::ReportsController < ApplicationController
   end
 
   def card
+    @net_dt_s = net :debits_account, date: settings.start_date - 1.day
+    @net_kt_s = net :credits_account, date: settings.start_date - 1.day
+    @saldo = @net_dt_s - @net_kt_s
+    @entries = entries(:debits_account).or(entries(:credits_account)).order(:date)
+        .includes(:debits_account, :credits_account, document: :analytics)
+    @net_dt_e = net :debits_account
+    @net_kt_e = net :credits_account
   end
 
   def balance

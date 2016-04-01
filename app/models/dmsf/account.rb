@@ -15,4 +15,8 @@ class Dmsf::Account < ApplicationRecord
   def full_name
     "#{code} #{name}"
   end
+
+  def analytic_type_ids
+    [analytic_type1_id, analytic_type2_id].compact
+  end
 end
