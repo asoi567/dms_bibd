@@ -1,2 +1,63 @@
 <h1><%=t '.title' %></h1>
 <h4>За период <%= settings.start_date %> — <%= settings.end_date %></h4>
+
+<table class="table">
+  <tr>
+    <th>Счет</th>
+    <th class="text-right">Сальдо начальное дебет</th>
+    <th class="text-right">Сальдо начальное кредит</th>
+    <th class="text-right">Оборот дебет</th>
+    <th class="text-right">Оборот кредит</th>
+    <th class="text-right">Сальдо конечное дебет</th>
+    <th class="text-right">Сальдо конечное кредит</th>
+  </tr>
+
+  <% @accounts.each do |a| %>
+    <tr>
+      <td><%= a %></td>
+      <% balance = (@dt_s[a].first.amount rescue 0) - (@kt_s[a].first.amount rescue 0) %>
+      <td class="text-right">
+        <%= balance > 0 ? number_with_delimiter(balance, delimeter: ' ') : '' %>
+      </td>
+      <td class="text-right">
+        <%= balance < 0 ? number_with_delimiter(-balance, delimeter: ' ') : '' %>
+      </td>
+      <% balance = (@dt[a].first.amount rescue 0) - (@kt[a].first.amount rescue 0) %>
+      <td class="text-right">
+        <%= balance > 0 ? number_with_delimiter(balance, delimeter: ' ') : '' %>
+      </td>
+      <td class="text-right">
+        <%= balance < 0 ? number_with_delimiter(-balance, delimeter: ' ') : '' %>
+      </td>
+      <% balance = (@dt_e[a].first.amount rescue 0) - (@kt_e[a].first.amount rescue 0) %>
+      <th class="text-right">
+        <%= balance > 0 ? number_with_delimiter(balance, delimeter: ' ') : '' %>
+      </td>
+      <th class="text-right">
+        <%= balance < 0 ? number_with_delimiter(-balance, delimeter: ' ') : '' %>
+      </td>
+    </tr>
+  <% end %>
+
+  <tr>
+    <th>Итого</th>
+    <th class="text-right">
+      <%= number_with_delimiter(@dt_s.values.map(&:first).sum(&:amount), delimeter: ' ') %>
+    </th>
+    <th class="text-right">
+      <%= number_with_delimiter(@kt_s.values.map(&:first).sum(&:amount), delimeter: ' ') %>
+    </th>
+    <th class="text-right">
+      <%= number_with_delimiter(@dt.values.map(&:first).sum(&:amount), delimeter: ' ') %>
+    </th>
+    <th class="text-right">
+      <%= number_with_delimiter(@kt.values.map(&:first).sum(&:amount), delimeter: ' ') %>
+    </th>
+    <th class="text-right">
+      <%= number_with_delimiter(@dt_e.values.map(&:first).sum(&:amount), delimeter: ' ') %>
+    </th>
+    <th class="text-right">
+      <%= number_with_delimiter(@kt_e.values.map(&:first).sum(&:amount), delimeter: ' ') %>
+    </th>
+  </tr>
+</table>

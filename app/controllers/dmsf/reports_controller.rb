@@ -1,5 +1,4 @@
 class Dmsf::ReportsController < ApplicationController
-  # http://psbatishev.narod.ru/1sbuh/b073.htm
   # http://v8.1c.ru/buhv8/ch/ch01.htm?printversion=1
 
   def analysis
@@ -37,6 +36,13 @@ class Dmsf::ReportsController < ApplicationController
   end
 
   def balance
+    @dt_s = accounts(:debet_entries, period_start: nil, period_end: settings.start_date - 1.day)
+    @kt_s = accounts(:credit_entries, period_start: nil, period_end: settings.start_date - 1.day)
+    @dt = accounts(:debet_entries)
+    @kt = accounts(:credit_entries)
+    @dt_e = accounts(:debet_entries, period_start: nil)
+    @kt_e = accounts(:credit_entries, period_start: nil)
+    @accounts = [@dt_s, @kt_s, @dt, @kt, @dt_e, @kt_e].flat_map(&:keys).uniq.sort
   end
 
   private
@@ -76,5 +82,12 @@ class Dmsf::ReportsController < ApplicationController
       entries.group_by { |e| e.document.analytics.find_by(analytic_type_id: id) }
           .transform_values { |v| analytic_group(v, ids.dup) }
     end
+  end
+
+  def accounts(side, period_start: settings.start_date, period_end: settings.end_date)
+    a = Dmsf::Account.joins(side).group(:id).select('dmsf_accounts.id, code, sum(dmsf_entries.amount) as amount')
+    a = a.where('dmsf_entries.date >= ?', period_start) if period_start
+    a = a.where('dmsf_entries.date <= ?', period_end) if period_end
+    a.group_by(&:code)
   end
 end
