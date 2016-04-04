@@ -9,7 +9,10 @@ class Dmsf::DocumentsController < ApplicationController
   end
 
   def new
-    @dmsf_document = Dmsf::Document.new(entry: Dmsf::Entry.new)
+    @dmsf_document = Dmsf::Document.new(
+      date: settings.current_date,
+      entry: Dmsf::Entry.new(date: settings.current_date)
+    )
   end
 
   def edit
